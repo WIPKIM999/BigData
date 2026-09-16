@@ -1,0 +1,22 @@
+{
+  "run_at_utc": "2026-09-16T11:38:43.520427+00:00",
+  "scope": "national_parks_in_chiang_mai",
+  "tourism": {
+    "source_rows": 1543,
+    "excluded_source_rows": 1435,
+    "normalized_rows": 1296,
+    "duplicate_keys_removed": 0
+  },
+  "weather": {
+    "source_files": 11,
+    "source_rows": 1060752,
+    "normalized_rows": 1452,
+    "duplicate_keys_removed": 0
+  },
+  "combined_monthly_rows": 1296,
+  "quality_rules": {
+    "negative_visitor_values": 0,
+    "invalid_park_ids": 0,
+    "missing_total_visitors": 0
+  }
+}

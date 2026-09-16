@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Big Data Mini Project Task List</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --text: #172033;
+      --muted: #667085;
+      --line: #e4e7ec;
+      --primary: #2563eb;
+      --primary-soft: #eff6ff;
+      --success: #15803d;
+      --success-soft: #f0fdf4;
+      --warning: #b45309;
+      --warning-soft: #fffbeb;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, "Noto Sans Thai", sans-serif;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1100px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 36px 0 56px;
+    }
+
+    header {
+      margin-bottom: 24px;
+    }
+
+    h1, h2, p { margin-top: 0; }
+    h1 { margin-bottom: 8px; font-size: clamp(1.8rem, 4vw, 2.7rem); }
+    h2 { margin-bottom: 4px; font-size: 1.25rem; }
+    .subtitle { color: var(--muted); margin-bottom: 0; }
+
+    .summary {
+      display: grid;
+      grid-template-columns: 1.2fr repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 4px 16px rgba(16, 24, 40, 0.04);
+    }
+
+    .progress-card { background: var(--primary-soft); border-color: #bfdbfe; }
+    .metric-label { color: var(--muted); font-size: .85rem; }
+    .metric-value { display: block; margin-top: 2px; font-size: 1.7rem; font-weight: 700; }
+
+    .progress-track {
+      height: 10px;
+      margin-top: 12px;
+      overflow: hidden;
+      border-radius: 99px;
+      background: #dbeafe;
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--primary);
+      transition: width .2s ease;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; }
+    button, select {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      font: inherit;
+      padding: 8px 12px;
+    }
+
+    button:hover, select:hover { border-color: #98a2b3; }
+    .danger { color: #b42318; }
+
+    .phase {
+      margin-bottom: 16px;
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+
+    .phase-header {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 16px 18px;
+      background: #fafbfc;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .phase-number {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      flex: 0 0 34px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      font-weight: 700;
+    }
+
+    .phase-description { color: var(--muted); font-size: .9rem; }
+    .phase-count { margin-left: auto; color: var(--muted); font-size: .85rem; white-space: nowrap; }
+
+    .tasks { padding: 4px 18px 8px; }
+    .task {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 13px 0;
+      border-bottom: 1px solid #f0f2f5;
+    }
+
+    .task:last-child { border-bottom: 0; }
+    .task input { width: 18px; height: 18px; margin-top: 4px; accent-color: var(--primary); cursor: pointer; }
+    .task-main { flex: 1; }
+    .task-title { font-weight: 600; }
+    .task-note { margin-top: 2px; color: var(--muted); font-size: .88rem; }
+    .task.done .task-title { color: var(--success); text-decoration: line-through; }
+    .task.done .task-note { color: #6b8f76; }
+
+    .tag {
+      display: inline-block;
+      margin-left: 6px;
+      padding: 1px 7px;
+      border-radius: 99px;
+      background: var(--warning-soft);
+      color: var(--warning);
+      font-size: .72rem;
+      font-weight: 700;
+      vertical-align: 2px;
+    }
+
+    footer { margin-top: 24px; color: var(--muted); font-size: .85rem; text-align: center; }
+
+    @media (max-width: 760px) {
+      .summary { grid-template-columns: repeat(2, 1fr); }
+      .progress-card { grid-column: 1 / -1; }
+      .phase-header { align-items: flex-start; }
+      .phase-count { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Big Data Mini Project Task List</h1>
+      <p class="subtitle">ระบบวิเคราะห์ข้อมูลอุทยานแห่งชาติในจังหวัดเชียงใหม่ โดยใช้ FastAPI, Python และ Public API</p>
+    </header>
+
+    <section class="summary" aria-label="สรุปความคืบหน้า">
+      <div class="card progress-card">
+        <span class="metric-label">ความคืบหน้ารวม</span>
+        <strong class="metric-value" id="progressText">0%</strong>
+        <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+      </div>
+      <div class="card"><span class="metric-label">ทำแล้ว</span><strong class="metric-value" id="doneCount">0</strong></div>
+      <div class="card"><span class="metric-label">คงเหลือ</span><strong class="metric-value" id="remainingCount">0</strong></div>
+      <div class="card"><span class="metric-label">ทั้งหมด</span><strong class="metric-value" id="totalCount">0</strong></div>
+    </section>
+
+    <div class="toolbar">
+      <div class="filters">
+        <label for="statusFilter" class="metric-label">แสดง:</label>
+        <select id="statusFilter">
+          <option value="all">ทั้งหมด</option>
+          <option value="pending">ยังไม่ได้ทำ</option>
+          <option value="done">ทำแล้ว</option>
+        </select>
+      </div>
+      <div class="filters">
+        <button id="checkAll">ทำเครื่องหมายทั้งหมด</button>
+        <button id="uncheckAll">ยกเลิกทั้งหมด</button>
+        <button id="resetButton" class="danger">รีเซ็ตสถานะ</button>
+      </div>
+    </div>
+
+    <div id="taskList"></div>
+
+    <footer>สถานะจะถูกบันทึกไว้ใน browser เครื่องนี้โดยอัตโนมัติ</footer>
+  </main>
+
+  <script>
+    const phases = [
+      {
+        title: "กำหนดขอบเขตและโจทย์วิเคราะห์",
+        description: "ล็อก scope ให้ชัดก่อนเริ่มเขียนระบบ",
+        tasks: [
+          ["กำหนดอุทยานในจังหวัดเชียงใหม่ที่ใช้วิเคราะห์", "ใช้รายชื่ออุทยานใน scope และระบุกรณีพื้นที่คาบเกี่ยวจังหวัด"],
+          ["กำหนดช่วงเวลาของข้อมูล", "แนะนำข้อมูลย้อนหลังอย่างน้อย 5-10 ปี"],
+          ["กำหนดคำถามเชิงวิเคราะห์", "เช่น นักท่องเที่ยวสัมพันธ์กับฤดูกาล PM2.5 ฝน หรือจุดความร้อนหรือไม่"],
+          ["กำหนดตัวชี้วัดของ Dashboard", "เช่น total visitors, top park, peak month, hotspot count และ PM2.5"],
+          ["กำหนดเกณฑ์ว่า dataset มีขนาดเพียงพอ", "เป้าหมายรวมอย่างน้อยหลายแสน records จากข้อมูลรายชั่วโมงและรายจุด"]
+        ]
+      },
+      {
+        title: "ยืนยันและเตรียมแหล่งข้อมูล",
+        description: "ตรวจ schema, license, ความถี่ และข้อจำกัดของทุกแหล่ง",
+        tasks: [
+          ["ยืนยันข้อมูลนักท่องเที่ยวจากกรมอุทยานฯ / data.go.th", "เก็บรายเดือน แยกอุทยาน ปี และประเภทนักท่องเที่ยว"],
+          ["ยืนยัน Open-Meteo Historical API", "เก็บอุณหภูมิ ฝน ความชื้น ลม และ weather code รายชั่วโมง", "แหล่งข้อมูลหลัก"],
+          ["ยืนยันข้อมูลจุดความร้อนจาก GISTDA / data.go.th", "ใช้ข้อมูลจุดความร้อนและไฟป่าของจังหวัดเชียงใหม่โดยไม่ต้องใช้ API key", "แหล่งข้อมูลหลัก"],
+          ["ตรวจข้อมูล PM2.5 และฝนจากสำนักงานจังหวัดเชียงใหม่", "ใช้เป็นข้อมูลเสริมและตรวจสอบความสอดคล้อง"],
+          ["ตรวจ OpenAQ สำหรับข้อมูลคุณภาพอากาศ", "ใช้เฉพาะกรณีมีสถานีและช่วงเวลาครอบคลุมพื้นที่ศึกษา", "ตัวเลือกเสริม"],
+          ["เก็บ metadata ของทุกแหล่ง", "URL, วันที่ดึง, license, หน่วยวัด, ความถี่ และข้อจำกัด"],
+          ["สร้างรายการพิกัดอุทยาน", "ใช้จุดศูนย์กลางหรือจุดตรวจวัดสำหรับเรียก weather API"]
+        ]
+      },
+      {
+        title: "ออกแบบโครงสร้างข้อมูล",
+        description: "กำหนดรูปแบบกลางเพื่อรวมข้อมูลต่างแหล่งเข้าด้วยกัน",
+        tasks: [
+          ["ออกแบบ tourism records", "park_name, province, year, month, thai_visitors, foreign_visitors, total_visitors"],
+          ["ออกแบบ weather records", "park_name, timestamp, temperature, rainfall, humidity, wind_speed, weather_code"],
+          ["ออกแบบ hotspot records", "รองรับข้อมูลจุดความร้อนแบบรายจุดหรือสรุปรายวันจาก GISTDA/data.go.th"],
+          ["ออกแบบ air quality records", "station, timestamp, pm25, pm10 และพิกัด"],
+          ["กำหนดมาตรฐานวันที่และ timezone", "แปลงข้อมูลให้อยู่ในรูปแบบเดียวกันก่อน join"],
+          ["กำหนดวิธี join ข้อมูล", "เชื่อมด้วย park_name + date/month และ spatial filtering สำหรับ hotspot"]
+        ]
+      },
+      {
+        title: "พัฒนา Data Ingestion",
+        description: "สร้างตัวดึงข้อมูลจาก CSV และ Public API โดยใช้ Python และไลบรารีมาตรฐานร่วมกับ FastAPI",
+        tasks: [
+          ["กำหนด Python dependencies", "ใช้ FastAPI และ Uvicorn; ไม่ใช้ Java, Spark หรือ PySpark"],
+          ["สร้างโครงสร้างโฟลเดอร์ data/raw, data/processed และ cache", "แยกข้อมูลต้นฉบับ ข้อมูลผ่านการแปลง และ cache API"],
+          ["เขียน CSV loader ด้วย csv", "รองรับ encoding และชื่อคอลัมน์ภาษาไทย"],
+          ["เขียน API client ด้วย urllib.request และ json", "ตั้ง timeout และตรวจ HTTP error"],
+          ["เพิ่ม pagination และ retry ที่จำเป็น", "ป้องกันข้อมูลหายเมื่อ API จำกัดจำนวนรายการต่อ request"],
+          ["เพิ่ม cache และ timestamp", "ลดการเรียก API ซ้ำและรองรับกรณี API ขัดข้อง"],
+          ["บันทึก raw response ทุกครั้งที่ดึงข้อมูล", "เก็บหลักฐานและทำให้ pipeline ทำซ้ำได้"],
+          ["ทดสอบจำนวน records ของแต่ละแหล่ง", "ทำรายงาน row count, date range และ missing fields"]
+        ]
+      },
+      {
+        title: "ทำความสะอาดและรวมข้อมูล",
+        description: "เปลี่ยนข้อมูลดิบหลายรูปแบบให้พร้อมวิเคราะห์",
+        tasks: [
+          ["ลบแถวซ้ำและแถวว่าง", "ตรวจ duplicate key ของแต่ละ dataset"],
+          ["แปลงตัวเลขและวันที่", "รองรับ comma, ค่าว่าง และปี พ.ศ./ค.ศ."],
+          ["normalize ชื่ออุทยาน", "แก้การสะกดและชื่อที่แตกต่างกันระหว่างแหล่ง"],
+          ["กรองเฉพาะพื้นที่จังหวัดเชียงใหม่", "ไม่รวม records ที่อยู่นอก scope"],
+          ["กำหนดกติกา scope สำหรับ hotspot", "ใช้ตัวชี้วัดระดับจังหวัดเมื่อ source ไม่มีพิกัด และเตรียม bounding-box filter สำหรับข้อมูลรายจุด"],
+          ["สร้าง dataset สำหรับวิเคราะห์รวม", "tourism + weather + air quality + hotspot"],
+          ["ตรวจคุณภาพข้อมูลหลัง clean", "รายงาน missing rate, min/max, outlier และช่วงวันที่"]
+        ]
+      },
+      {
+        title: "สร้าง Analytics Backend",
+        description: "คำนวณผลจากข้อมูลโดยไม่พึ่ง Spark หรือไลบรารีภายนอก",
+        tasks: [
+          ["สร้างฟังก์ชัน summary metrics", "ยอดรวม ค่าเฉลี่ย ค่าสูงสุด และจำนวนอุทยาน"],
+          ["สร้าง monthly trend analysis", "แนวโน้มรายเดือนและการเปรียบเทียบรายปี"],
+          ["สร้าง park ranking", "จัดอันดับอุทยานตามจำนวนนักท่องเที่ยว"],
+          ["สร้าง seasonality analysis", "แบ่งฤดูและหา peak/off-peak period"],
+          ["วิเคราะห์ความสัมพันธ์กับสภาพอากาศ", "เช่น ฝน อุณหภูมิ และความชื้น"],
+          ["วิเคราะห์ความสัมพันธ์กับ PM2.5 และ hotspot", "เปรียบเทียบช่วงมลพิษ/ไฟป่ากับนักท่องเที่ยว"],
+          ["วัดเวลาและหน่วยความจำของการประมวลผล", "เก็บ benchmark เพื่อใช้ประกอบรายงาน Big Data"]
+        ]
+      },
+      {
+        title: "สร้าง Web App และ API",
+        description: "ทำ Backend ด้วย FastAPI และหน้าเว็บด้วย HTML/CSS/JavaScript แบบไม่ใช้ frontend framework",
+        tasks: [
+          ["สร้าง FastAPI application", "กำหนด routes, response models และเปิด Swagger docs อัตโนมัติ"],
+          ["สร้าง endpoint /api/summary", "ส่ง KPI หลักของ Dashboard"],
+          ["สร้าง endpoint /api/monthly-visitors", "ส่งข้อมูลแนวโน้มรายเดือน"],
+          ["สร้าง endpoint /api/park-visitors", "ส่งข้อมูลเปรียบเทียบอุทยาน"],
+          ["สร้าง endpoint /api/environment", "ส่ง weather, PM2.5 และ hotspot"],
+          ["สร้าง endpoint สำหรับ refresh data", "ดึงข้อมูลใหม่แบบ manual และแสดงสถานะงาน"],
+          ["จัดการ error และ API unavailable", "ใช้ cache ล่าสุดแทนและแจ้งสถานะบนหน้าเว็บ"]
+        ]
+      },
+      {
+        title: "ทำ Dashboard",
+        description: "นำเสนอผลให้ดูง่ายและตอบคำถามของโปรเจกต์",
+        tasks: [
+          ["สร้าง KPI cards", "ยอดนักท่องเที่ยว อุทยานสูงสุด เดือนสูงสุด และ hotspot"],
+          ["สร้างกราฟเส้นรายเดือน", "ใช้ SVG หรือ Canvas ที่เขียนด้วย JavaScript เอง"],
+          ["สร้างกราฟแท่งเปรียบเทียบอุทยาน", "รองรับการ sort และ filter"],
+          ["สร้างตัวกรองปี เดือน และอุทยาน", "เปลี่ยนผลลัพธ์ผ่าน API โดยไม่ reload ทั้งหน้า"],
+          ["สร้างตารางรายละเอียด", "แสดงค่าจริงและวันที่อัปเดตล่าสุด"],
+          ["เพิ่มส่วนแหล่งที่มาและคำอธิบาย", "ระบุ API, หน่วยวัด และข้อจำกัดของข้อมูล"],
+          ["ทดสอบ Responsive Design", "รองรับ desktop และ mobile"]
+        ]
+      },
+      {
+        title: "ทดสอบและจัดทำรายงาน",
+        description: "ตรวจความถูกต้องก่อนนำเสนอ",
+        tasks: [
+          ["ทดสอบการดึงข้อมูลทุกแหล่ง", "กรณีสำเร็จ timeout response ว่าง และข้อมูลผิดรูปแบบ"],
+          ["ทดสอบ data quality", "เทียบยอดรวมกับแหล่งข้อมูลต้นทาง"],
+          ["ทดสอบ API endpoints", "ตรวจ status code, JSON schema และ filter"],
+          ["ทดสอบ Dashboard ด้วยข้อมูลจริง", "ตรวจกราฟไม่ล้นและค่าไม่ผิด"],
+          ["ทดสอบการเริ่มระบบจากเครื่องใหม่", "ระบุว่าใช้ Python version ใดและไม่ต้องใช้ Java"],
+          ["จัดทำ README", "วิธีรัน วิธี refresh data โครงสร้างระบบ และแหล่งข้อมูล"],
+          ["จัดทำรายงานผลลัพธ์", "สรุป methodology, row count, benchmark และข้อค้นพบ"],
+          ["เตรียม demo flow", "เปิดระบบ → refresh data → filter → ดู insight → export/อธิบายผล"]
+        ]
+      }
+    ];
+
+    const storageKey = "bigdata-mini-project-task-status-v1";
+    const storedState = localStorage.getItem(storageKey);
+    const saved = storedState ? JSON.parse(storedState) : {};
+
+    // Step 1 has been completed in PROJECT_SCOPE.md.
+    // Only initialize these defaults when this browser has no saved state yet.
+    if (!storedState) {
+      phases[0].tasks.forEach((_, taskIndex) => {
+        saved[taskId(0, taskIndex)] = true;
+      });
+      localStorage.setItem(storageKey, JSON.stringify(saved));
+    }
+
+    // Step 2 smoke test and ingestion foundation are now complete.
+    // Migrate existing browser state once without removing any user progress.
+    const migrationKey = "bigdata-mini-project-task-status-migration-v2";
+    if (!localStorage.getItem(migrationKey)) {
+      saved[taskId(1, 0)] = true; // DNP tourism catalog verified; 39 resources discovered.
+      saved[taskId(1, 1)] = true; // Open-Meteo API verified with 1,848 test records.
+      saved[taskId(1, 3)] = true; // Chiang Mai PM2.5/rainfall sources identified.
+      saved[taskId(1, 4)] = true; // OpenAQ v3 API requirements documented.
+      saved[taskId(1, 5)] = true; // Source metadata file created.
+      saved[taskId(1, 6)] = true; // Park reference coordinate file created.
+      saved[taskId(3, 2)] = true; // Dependency-free API client created.
+      localStorage.setItem(storageKey, JSON.stringify(saved));
+      localStorage.setItem(migrationKey, "done");
+    }
+
+    // NASA FIRMS was removed from the project and replaced by GISTDA/data.go.th.
+    const sourceMigrationKey = "bigdata-mini-project-task-status-migration-v3";
+    if (!localStorage.getItem(sourceMigrationKey)) {
+      saved[taskId(1, 2)] = true;
+      localStorage.setItem(storageKey, JSON.stringify(saved));
+      localStorage.setItem(sourceMigrationKey, "done");
+    }
+
+    // Ensure all currently verified Phase 2 source tasks are reflected in older tabs.
+    const verifiedSourcesMigrationKey = "bigdata-mini-project-task-status-migration-v4";
+    if (!localStorage.getItem(verifiedSourcesMigrationKey)) {
+      [0, 1, 2, 3, 4, 5, 6].forEach((taskIndex) => {
+        saved[taskId(1, taskIndex)] = true;
+      });
+      localStorage.setItem(storageKey, JSON.stringify(saved));
+      localStorage.setItem(verifiedSourcesMigrationKey, "done");
+    }
+
+    // Step 3 canonical schema and join strategy are now documented.
+    const schemaMigrationKey = "bigdata-mini-project-task-status-migration-v5";
+    if (!localStorage.getItem(schemaMigrationKey)) {
+      [0, 1, 2, 3, 4, 5].forEach((taskIndex) => {
+        saved[taskId(2, taskIndex)] = true;
+      });
+      localStorage.setItem(storageKey, JSON.stringify(saved));
+      localStorage.setItem(schemaMigrationKey, "done");
+    }
+
+    // Step 4 ingestion foundation is now implemented.
+    const ingestionMigrationKey = "bigdata-mini-project-task-status-migration-v6";
+    if (!localStorage.getItem(ingestionMigrationKey)) {
+      [0, 1, 2, 3, 4, 5, 6].forEach((taskIndex) => {
+        saved[taskId(3, taskIndex)] = true;
+      });
+      localStorage.setItem(storageKey, JSON.stringify(saved));
+      localStorage.setItem(ingestionMigrationKey, "done");
+    }
+
+    // Keep the final row-count task pending until the DNP CSV download succeeds.
+    const ingestionVerificationMigrationKey = "bigdata-mini-project-task-status-migration-v7";
+    if (!localStorage.getItem(ingestionVerificationMigrationKey)) {
+      [0, 1, 2, 3, 4, 5].forEach((taskIndex) => {
+        saved[taskId(3, taskIndex)] = true;
+      });
+      delete saved[taskId(3, 6)];
+      localStorage.setItem(storageKey, JSON.stringify(saved));
+      localStorage.setItem(ingestionVerificationMigrationKey, "done");
+    }
+
+    // Raw responses are persisted by the cache/download layer and have metadata sidecars.
+    const rawResponseMigrationKey = "bigdata-mini-project-task-status-migration-v8";
+    if (!localStorage.getItem(rawResponseMigrationKey)) {
+      saved[taskId(3, 6)] = true;
+      localStorage.setItem(storageKey, JSON.stringify(saved));
+      localStorage.setItem(rawResponseMigrationKey, "done");
+    }
+
+    // Step 4 source row-count test completed for Tourism, Weather, and catalogs.
+    const rowCountMigrationKey = "bigdata-mini-project-task-status-migration-v9";
+    if (!localStorage.getItem(rowCountMigrationKey)) {
+      saved[taskId(3, 7)] = true;
+      localStorage.setItem(storageKey, JSON.stringify(saved));
+      localStorage.setItem(rowCountMigrationKey, "done");
+    }
+
+    // Step 5 cleaning/combining is complete for Tourism and Weather.
+    // Hotspot spatial filtering remains pending until a coordinate-level source is selected.
+    const cleaningMigrationKey = "bigdata-mini-project-task-status-migration-v10";
+    if (!localStorage.getItem(cleaningMigrationKey)) {
+      [0, 1, 2, 3, 5, 6].forEach((taskIndex) => {
+        saved[taskId(4, taskIndex)] = true;
+      });
+      delete saved[taskId(4, 4)];
+      localStorage.setItem(storageKey, JSON.stringify(saved));
+      localStorage.setItem(cleaningMigrationKey, "done");
+    }
+
+    // Step 5 hotspot scope decision is documented and implemented.
+    const hotspotScopeMigrationKey = "bigdata-mini-project-task-status-migration-v11";
+    if (!localStorage.getItem(hotspotScopeMigrationKey)) {
+      saved[taskId(4, 4)] = true;
+      localStorage.setItem(storageKey, JSON.stringify(saved));
+      localStorage.setItem(hotspotScopeMigrationKey, "done");
+    }
+
+    // Step 6 analytics backend is implemented for tourism/weather data.
+    // PM2.5/hotspot correlation remains pending until joinable numeric data exists.
+    const analyticsMigrationKey = "bigdata-mini-project-task-status-migration-v12";
+    if (!localStorage.getItem(analyticsMigrationKey)) {
+      [0, 1, 2, 3, 4, 6].forEach((taskIndex) => {
+        saved[taskId(5, taskIndex)] = true;
+      });
+      delete saved[taskId(5, 5)];
+      localStorage.setItem(storageKey, JSON.stringify(saved));
+      localStorage.setItem(analyticsMigrationKey, "done");
+    }
+
+    // Step 6 analytics report has been generated for tourism/weather inputs.
+    const analyticsReportMigrationKey = "bigdata-mini-project-task-status-migration-v13";
+    if (!localStorage.getItem(analyticsReportMigrationKey)) {
+      [0, 1, 2, 3, 4, 6].forEach((taskIndex) => {
+        saved[taskId(5, taskIndex)] = true;
+      });
+      delete saved[taskId(5, 5)];
+      localStorage.setItem(storageKey, JSON.stringify(saved));
+      localStorage.setItem(analyticsReportMigrationKey, "done");
+    }
+
+    // PM2.5 and hotspot monthly sources are now downloaded and joined by year/month.
+    const environmentAnalyticsMigrationKey = "bigdata-mini-project-task-status-migration-v14";
+    if (!localStorage.getItem(environmentAnalyticsMigrationKey)) {
+      saved[taskId(5, 5)] = true;
+      localStorage.setItem(storageKey, JSON.stringify(saved));
+      localStorage.setItem(environmentAnalyticsMigrationKey, "done");
+    }
+
+    // Step 7 FastAPI web app and API backend are implemented and tested.
+    const webApiMigrationKey = "bigdata-mini-project-task-status-migration-v15";
+    if (!localStorage.getItem(webApiMigrationKey)) {
+      [0, 1, 2, 3, 4, 5, 6].forEach((taskIndex) => {
+        saved[taskId(6, taskIndex)] = true;
+      });
+      localStorage.setItem(storageKey, JSON.stringify(saved));
+      localStorage.setItem(webApiMigrationKey, "done");
+    }
+
+    // Step 8 dashboard is implemented with responsive HTML/CSS/JavaScript.
+    const dashboardMigrationKey = "bigdata-mini-project-task-status-migration-v16";
+    if (!localStorage.getItem(dashboardMigrationKey)) {
+      [0, 1, 2, 3, 4, 5, 6].forEach((taskIndex) => {
+        saved[taskId(7, taskIndex)] = true;
+      });
+      localStorage.setItem(storageKey, JSON.stringify(saved));
+      localStorage.setItem(dashboardMigrationKey, "done");
+    }
+
+    // Step 9 testing, documentation, report and demo flow are complete.
+    const finalDeliveryMigrationKey = "bigdata-mini-project-task-status-migration-v17";
+    if (!localStorage.getItem(finalDeliveryMigrationKey)) {
+      [0, 1, 2, 3, 4, 5, 6, 7].forEach((taskIndex) => {
+        saved[taskId(8, taskIndex)] = true;
+      });
+      localStorage.setItem(storageKey, JSON.stringify(saved));
+      localStorage.setItem(finalDeliveryMigrationKey, "done");
+    }
+
+    // Interactive Nature Data Lab upgrade retains completed dashboard/report status.
+    const natureDataLabMigrationKey = "bigdata-mini-project-task-status-migration-v18";
+    if (!localStorage.getItem(natureDataLabMigrationKey)) {
+      [0, 1, 2, 3, 4, 5, 6].forEach((taskIndex) => saved[taskId(7, taskIndex)] = true);
+      [0, 1, 2, 3, 4, 5, 6, 7].forEach((taskIndex) => saved[taskId(8, taskIndex)] = true);
+      localStorage.setItem(storageKey, JSON.stringify(saved));
+      localStorage.setItem(natureDataLabMigrationKey, "done");
+    }
+
+    const taskList = document.getElementById("taskList");
+    const statusFilter = document.getElementById("statusFilter");
+
+    function taskId(phaseIndex, taskIndex) { return `${phaseIndex}-${taskIndex}`; }
+
+    function save() {
+      localStorage.setItem(storageKey, JSON.stringify(saved));
+    }
+
+    function render() {
+      taskList.innerHTML = "";
+      const filter = statusFilter.value;
+      phases.forEach((phase, phaseIndex) => {
+        const visibleTasks = phase.tasks.filter((_, taskIndex) => {
+          const done = Boolean(saved[taskId(phaseIndex, taskIndex)]);
+          return filter === "all" || (filter === "done" ? done : !done);
+        });
+        if (!visibleTasks.length) return;
+
+        const section = document.createElement("section");
+        section.className = "phase";
+        const completed = phase.tasks.filter((_, i) => saved[taskId(phaseIndex, i)]).length;
+        section.innerHTML = `
+          <div class="phase-header">
+            <span class="phase-number">${phaseIndex + 1}</span>
+            <div>
+              <h2>${phase.title}</h2>
+              <div class="phase-description">${phase.description}</div>
+            </div>
+            <span class="phase-count">${completed}/${phase.tasks.length} งาน</span>
+          </div>
+          <div class="tasks"></div>
+        `;
+
+        const tasks = section.querySelector(".tasks");
+        phase.tasks.forEach((task, taskIndex) => {
+          const done = Boolean(saved[taskId(phaseIndex, taskIndex)]);
+          if (filter === "done" && !done || filter === "pending" && done) return;
+          const row = document.createElement("label");
+          row.className = `task${done ? " done" : ""}`;
+          row.innerHTML = `
+            <input type="checkbox" ${done ? "checked" : ""} aria-label="${task[0]}" />
+            <span class="task-main">
+              <span class="task-title">${task[0]}${task[2] ? `<span class="tag">${task[2]}</span>` : ""}</span>
+              <span class="task-note">${task[1]}</span>
+            </span>
+          `;
+          row.querySelector("input").addEventListener("change", (event) => {
+            saved[taskId(phaseIndex, taskIndex)] = event.target.checked;
+            if (!event.target.checked) delete saved[taskId(phaseIndex, taskIndex)];
+            save();
+            render();
+          });
+          tasks.appendChild(row);
+        });
+        taskList.appendChild(section);
+      });
+      updateSummary();
+    }
+
+    function updateSummary() {
+      const all = phases.flatMap((phase, p) => phase.tasks.map((_, t) => taskId(p, t)));
+      const done = all.filter(id => saved[id]).length;
+      const percent = all.length ? Math.round(done / all.length * 100) : 0;
+      document.getElementById("progressText").textContent = `${percent}%`;
+      document.getElementById("progressBar").style.width = `${percent}%`;
+      document.getElementById("doneCount").textContent = done;
+      document.getElementById("remainingCount").textContent = all.length - done;
+      document.getElementById("totalCount").textContent = all.length;
+    }
+
+    function setAll(value) {
+      phases.forEach((phase, p) => phase.tasks.forEach((_, t) => {
+        const id = taskId(p, t);
+        if (value) saved[id] = true;
+        else delete saved[id];
+      }));
+      save();
+      render();
+    }
+
+    statusFilter.addEventListener("change", render);
+    document.getElementById("checkAll").addEventListener("click", () => setAll(true));
+    document.getElementById("uncheckAll").addEventListener("click", () => setAll(false));
+    document.getElementById("resetButton").addEventListener("click", () => {
+      if (confirm("ต้องการรีเซ็ตสถานะงานทั้งหมดหรือไม่?")) setAll(false);
+    });
+
+    render();
+  </script>
+</body>
+</html>

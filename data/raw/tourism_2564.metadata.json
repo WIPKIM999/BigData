@@ -1,0 +1,26 @@
+{
+  "source_name": "dnp_tourism",
+  "request_url": "https://catalog.dnp.go.th/dataset/91d66c6a-5b88-41ee-8597-11be8aec5aa6/resource/58906bbf-0a49-4ee7-9b7b-d13b2bef1d90/download/-2564.csv",
+  "retrieved_at_utc": "2026-09-16T10:42:19.559128+00:00",
+  "start_date": null,
+  "end_date": null,
+  "http_status": 200,
+  "response_format": "csv",
+  "path": "/Users/jadsadamaoya/Desktop/PY-Project/BigData/data/raw/tourism_2564.csv",
+  "row_count": 152,
+  "columns": [
+    "ปี",
+    "หน่วยงาน",
+    "2564",
+    "หน่วย",
+    ""
+  ],
+  "null_counts": {
+    "ปี": 18,
+    "หน่วยงาน": 18,
+    "2564": 18,
+    "หน่วย": 18,
+    "": 151
+  },
+  "sha256": "eb49bf63d0f63a4c0b6861dc18a1caf7b3dfa8cc3b858dc6269f210b2990160c"
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "timezone": "Asia/Bangkok",
+  "province_scope": "เชียงใหม่",
+  "datasets": {
+    "parks": {
+      "path": "data/processed/parks.json",
+      "format": "json",
+      "primary_key": "park_id"
+    },
+    "tourism": {
+      "path": "data/processed/tourism.csv",
+      "format": "csv",
+      "natural_key": ["park_id", "fiscal_year", "month", "source_name"]
+    },
+    "weather_hourly": {
+      "path": "data/processed/weather_hourly.csv",
+      "format": "csv",
+      "natural_key": ["park_id", "timestamp", "source_name"]
+    },
+    "hotspots": {
+      "path": "data/processed/hotspots.csv",
+      "format": "csv",
+      "natural_key": ["source_name", "record_date", "latitude", "longitude", "land_use_type"]
+    },
+    "air_quality": {
+      "path": "data/processed/air_quality.csv",
+      "format": "csv",
+      "natural_key": ["station_id", "timestamp", "source_name"]
+    }
+  }
+}

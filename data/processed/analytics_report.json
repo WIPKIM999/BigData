@@ -1,0 +1,724 @@
+{
+  "summary": {
+    "total_visitors": 14307746,
+    "parks_with_data": 11,
+    "tourism_rows": 1296,
+    "top_park": "ดอยอินทนนท์",
+    "top_park_visitors": 5978442
+  },
+  "monthly_trend": [
+    {
+      "calendar_year": 2015,
+      "month": 10,
+      "total_visitors": 154528
+    },
+    {
+      "calendar_year": 2015,
+      "month": 11,
+      "total_visitors": 155171
+    },
+    {
+      "calendar_year": 2015,
+      "month": 12,
+      "total_visitors": 378978
+    },
+    {
+      "calendar_year": 2016,
+      "month": 1,
+      "total_visitors": 325751
+    },
+    {
+      "calendar_year": 2016,
+      "month": 2,
+      "total_visitors": 153738
+    },
+    {
+      "calendar_year": 2016,
+      "month": 3,
+      "total_visitors": 98117
+    },
+    {
+      "calendar_year": 2016,
+      "month": 4,
+      "total_visitors": 165566
+    },
+    {
+      "calendar_year": 2016,
+      "month": 5,
+      "total_visitors": 71462
+    },
+    {
+      "calendar_year": 2016,
+      "month": 6,
+      "total_visitors": 46890
+    },
+    {
+      "calendar_year": 2016,
+      "month": 7,
+      "total_visitors": 83219
+    },
+    {
+      "calendar_year": 2016,
+      "month": 8,
+      "total_visitors": 72073
+    },
+    {
+      "calendar_year": 2016,
+      "month": 9,
+      "total_visitors": 50063
+    },
+    {
+      "calendar_year": 2016,
+      "month": 10,
+      "total_visitors": 133047
+    },
+    {
+      "calendar_year": 2016,
+      "month": 11,
+      "total_visitors": 156358
+    },
+    {
+      "calendar_year": 2016,
+      "month": 12,
+      "total_visitors": 385669
+    },
+    {
+      "calendar_year": 2017,
+      "month": 1,
+      "total_visitors": 306736
+    },
+    {
+      "calendar_year": 2017,
+      "month": 2,
+      "total_visitors": 163806
+    },
+    {
+      "calendar_year": 2017,
+      "month": 3,
+      "total_visitors": 96071
+    },
+    {
+      "calendar_year": 2017,
+      "month": 4,
+      "total_visitors": 138759
+    },
+    {
+      "calendar_year": 2017,
+      "month": 5,
+      "total_visitors": 63523
+    },
+    {
+      "calendar_year": 2017,
+      "month": 6,
+      "total_visitors": 50008
+    },
+    {
+      "calendar_year": 2017,
+      "month": 7,
+      "total_visitors": 81227
+    },
+    {
+      "calendar_year": 2017,
+      "month": 8,
+      "total_visitors": 70579
+    },
+    {
+      "calendar_year": 2017,
+      "month": 9,
+      "total_visitors": 58022
+    },
+    {
+      "calendar_year": 2017,
+      "month": 10,
+      "total_visitors": 59307
+    },
+    {
+      "calendar_year": 2017,
+      "month": 11,
+      "total_visitors": 69531
+    },
+    {
+      "calendar_year": 2017,
+      "month": 12,
+      "total_visitors": 152841
+    },
+    {
+      "calendar_year": 2018,
+      "month": 1,
+      "total_visitors": 129877
+    },
+    {
+      "calendar_year": 2018,
+      "month": 2,
+      "total_visitors": 81440
+    },
+    {
+      "calendar_year": 2018,
+      "month": 3,
+      "total_visitors": 84106
+    },
+    {
+      "calendar_year": 2018,
+      "month": 4,
+      "total_visitors": 130653
+    },
+    {
+      "calendar_year": 2018,
+      "month": 5,
+      "total_visitors": 45301
+    },
+    {
+      "calendar_year": 2018,
+      "month": 6,
+      "total_visitors": 37482
+    },
+    {
+      "calendar_year": 2018,
+      "month": 7,
+      "total_visitors": 50934
+    },
+    {
+      "calendar_year": 2018,
+      "month": 8,
+      "total_visitors": 45963
+    },
+    {
+      "calendar_year": 2018,
+      "month": 9,
+      "total_visitors": 42501
+    },
+    {
+      "calendar_year": 2018,
+      "month": 10,
+      "total_visitors": 159497
+    },
+    {
+      "calendar_year": 2018,
+      "month": 11,
+      "total_visitors": 188411
+    },
+    {
+      "calendar_year": 2018,
+      "month": 12,
+      "total_visitors": 391442
+    },
+    {
+      "calendar_year": 2019,
+      "month": 1,
+      "total_visitors": 374598
+    },
+    {
+      "calendar_year": 2019,
+      "month": 2,
+      "total_visitors": 168036
+    },
+    {
+      "calendar_year": 2019,
+      "month": 3,
+      "total_visitors": 103197
+    },
+    {
+      "calendar_year": 2019,
+      "month": 4,
+      "total_visitors": 139371
+    },
+    {
+      "calendar_year": 2019,
+      "month": 5,
+      "total_visitors": 72119
+    },
+    {
+      "calendar_year": 2019,
+      "month": 6,
+      "total_visitors": 66303
+    },
+    {
+      "calendar_year": 2019,
+      "month": 7,
+      "total_visitors": 97289
+    },
+    {
+      "calendar_year": 2019,
+      "month": 8,
+      "total_visitors": 76294
+    },
+    {
+      "calendar_year": 2019,
+      "month": 9,
+      "total_visitors": 66956
+    },
+    {
+      "calendar_year": 2019,
+      "month": 10,
+      "total_visitors": 179643
+    },
+    {
+      "calendar_year": 2019,
+      "month": 11,
+      "total_visitors": 195333
+    },
+    {
+      "calendar_year": 2019,
+      "month": 12,
+      "total_visitors": 394250
+    },
+    {
+      "calendar_year": 2020,
+      "month": 1,
+      "total_visitors": 261004
+    },
+    {
+      "calendar_year": 2020,
+      "month": 2,
+      "total_visitors": 131481
+    },
+    {
+      "calendar_year": 2020,
+      "month": 3,
+      "total_visitors": 47296
+    },
+    {
+      "calendar_year": 2020,
+      "month": 4,
+      "total_visitors": 0
+    },
+    {
+      "calendar_year": 2020,
+      "month": 5,
+      "total_visitors": 0
+    },
+    {
+      "calendar_year": 2020,
+      "month": 6,
+      "total_visitors": 2
+    },
+    {
+      "calendar_year": 2020,
+      "month": 7,
+      "total_visitors": 30489
+    },
+    {
+      "calendar_year": 2020,
+      "month": 8,
+      "total_visitors": 42435
+    },
+    {
+      "calendar_year": 2020,
+      "month": 9,
+      "total_visitors": 59670
+    },
+    {
+      "calendar_year": 2020,
+      "month": 10,
+      "total_visitors": 105424
+    },
+    {
+      "calendar_year": 2020,
+      "month": 11,
+      "total_visitors": 247207
+    },
+    {
+      "calendar_year": 2020,
+      "month": 12,
+      "total_visitors": 190097
+    },
+    {
+      "calendar_year": 2021,
+      "month": 1,
+      "total_visitors": 74387
+    },
+    {
+      "calendar_year": 2021,
+      "month": 2,
+      "total_visitors": 47406
+    },
+    {
+      "calendar_year": 2021,
+      "month": 3,
+      "total_visitors": 45150
+    },
+    {
+      "calendar_year": 2021,
+      "month": 4,
+      "total_visitors": 18421
+    },
+    {
+      "calendar_year": 2021,
+      "month": 5,
+      "total_visitors": 233
+    },
+    {
+      "calendar_year": 2021,
+      "month": 6,
+      "total_visitors": 761
+    },
+    {
+      "calendar_year": 2021,
+      "month": 7,
+      "total_visitors": 0
+    },
+    {
+      "calendar_year": 2021,
+      "month": 8,
+      "total_visitors": 1507
+    },
+    {
+      "calendar_year": 2021,
+      "month": 9,
+      "total_visitors": 2698
+    },
+    {
+      "calendar_year": 2021,
+      "month": 10,
+      "total_visitors": 12959
+    },
+    {
+      "calendar_year": 2021,
+      "month": 11,
+      "total_visitors": 63758
+    },
+    {
+      "calendar_year": 2021,
+      "month": 12,
+      "total_visitors": 225963
+    },
+    {
+      "calendar_year": 2022,
+      "month": 1,
+      "total_visitors": 166761
+    },
+    {
+      "calendar_year": 2022,
+      "month": 2,
+      "total_visitors": 68410
+    },
+    {
+      "calendar_year": 2022,
+      "month": 3,
+      "total_visitors": 46319
+    },
+    {
+      "calendar_year": 2022,
+      "month": 4,
+      "total_visitors": 99889
+    },
+    {
+      "calendar_year": 2022,
+      "month": 5,
+      "total_visitors": 46009
+    },
+    {
+      "calendar_year": 2022,
+      "month": 6,
+      "total_visitors": 42218
+    },
+    {
+      "calendar_year": 2022,
+      "month": 7,
+      "total_visitors": 62169
+    },
+    {
+      "calendar_year": 2022,
+      "month": 8,
+      "total_visitors": 52433
+    },
+    {
+      "calendar_year": 2022,
+      "month": 9,
+      "total_visitors": 45388
+    },
+    {
+      "calendar_year": 2022,
+      "month": 10,
+      "total_visitors": 115633
+    },
+    {
+      "calendar_year": 2022,
+      "month": 11,
+      "total_visitors": 164227
+    },
+    {
+      "calendar_year": 2022,
+      "month": 12,
+      "total_visitors": 290958
+    },
+    {
+      "calendar_year": 2023,
+      "month": 1,
+      "total_visitors": 244591
+    },
+    {
+      "calendar_year": 2023,
+      "month": 2,
+      "total_visitors": 125651
+    },
+    {
+      "calendar_year": 2023,
+      "month": 3,
+      "total_visitors": 87176
+    },
+    {
+      "calendar_year": 2023,
+      "month": 4,
+      "total_visitors": 121707
+    },
+    {
+      "calendar_year": 2023,
+      "month": 5,
+      "total_visitors": 57661
+    },
+    {
+      "calendar_year": 2023,
+      "month": 6,
+      "total_visitors": 60020
+    },
+    {
+      "calendar_year": 2023,
+      "month": 7,
+      "total_visitors": 88439
+    },
+    {
+      "calendar_year": 2023,
+      "month": 8,
+      "total_visitors": 75330
+    },
+    {
+      "calendar_year": 2023,
+      "month": 9,
+      "total_visitors": 59706
+    },
+    {
+      "calendar_year": 2023,
+      "month": 10,
+      "total_visitors": 120536
+    },
+    {
+      "calendar_year": 2023,
+      "month": 11,
+      "total_visitors": 176808
+    },
+    {
+      "calendar_year": 2023,
+      "month": 12,
+      "total_visitors": 331024
+    },
+    {
+      "calendar_year": 2024,
+      "month": 1,
+      "total_visitors": 255162
+    },
+    {
+      "calendar_year": 2024,
+      "month": 2,
+      "total_visitors": 158094
+    },
+    {
+      "calendar_year": 2024,
+      "month": 3,
+      "total_visitors": 106328
+    },
+    {
+      "calendar_year": 2024,
+      "month": 4,
+      "total_visitors": 131113
+    },
+    {
+      "calendar_year": 2024,
+      "month": 5,
+      "total_visitors": 68010
+    },
+    {
+      "calendar_year": 2024,
+      "month": 6,
+      "total_visitors": 67113
+    },
+    {
+      "calendar_year": 2024,
+      "month": 7,
+      "total_visitors": 93324
+    },
+    {
+      "calendar_year": 2024,
+      "month": 8,
+      "total_visitors": 86747
+    },
+    {
+      "calendar_year": 2024,
+      "month": 9,
+      "total_visitors": 56602
+    },
+    {
+      "calendar_year": 2024,
+      "month": 10,
+      "total_visitors": 108649
+    },
+    {
+      "calendar_year": 2024,
+      "month": 11,
+      "total_visitors": 200295
+    },
+    {
+      "calendar_year": 2024,
+      "month": 12,
+      "total_visitors": 371782
+    },
+    {
+      "calendar_year": 2025,
+      "month": 1,
+      "total_visitors": 316430
+    },
+    {
+      "calendar_year": 2025,
+      "month": 2,
+      "total_visitors": 176652
+    },
+    {
+      "calendar_year": 2025,
+      "month": 3,
+      "total_visitors": 120212
+    },
+    {
+      "calendar_year": 2025,
+      "month": 4,
+      "total_visitors": 124677
+    },
+    {
+      "calendar_year": 2025,
+      "month": 5,
+      "total_visitors": 83054
+    },
+    {
+      "calendar_year": 2025,
+      "month": 6,
+      "total_visitors": 75211
+    },
+    {
+      "calendar_year": 2025,
+      "month": 7,
+      "total_visitors": 94519
+    },
+    {
+      "calendar_year": 2025,
+      "month": 8,
+      "total_visitors": 108392
+    },
+    {
+      "calendar_year": 2025,
+      "month": 9,
+      "total_visitors": 85933
+    }
+  ],
+  "park_ranking": [
+    {
+      "rank": 1,
+      "park_name": "ดอยอินทนนท์",
+      "total_visitors": 5978442
+    },
+    {
+      "rank": 2,
+      "park_name": "ดอยสุเทพ-ปุย",
+      "total_visitors": 2242325
+    },
+    {
+      "rank": 3,
+      "park_name": "ห้วยน้ำดัง",
+      "total_visitors": 1447446
+    },
+    {
+      "rank": 4,
+      "park_name": "แม่ปิง",
+      "total_visitors": 1137171
+    },
+    {
+      "rank": 5,
+      "park_name": "ดอยผ้าห่มปก",
+      "total_visitors": 895123
+    },
+    {
+      "rank": 6,
+      "park_name": "ออบหลวง",
+      "total_visitors": 700721
+    },
+    {
+      "rank": 7,
+      "park_name": "ศรีลานนา",
+      "total_visitors": 643533
+    },
+    {
+      "rank": 8,
+      "park_name": "แม่วาง",
+      "total_visitors": 575481
+    },
+    {
+      "rank": 9,
+      "park_name": "ผาแดง",
+      "total_visitors": 407408
+    },
+    {
+      "rank": 10,
+      "park_name": "ขุนขาน",
+      "total_visitors": 179533
+    },
+    {
+      "rank": 11,
+      "park_name": "แม่ตะไคร้",
+      "total_visitors": 100563
+    }
+  ],
+  "seasonality": [
+    {
+      "season": "หนาว",
+      "total_visitors": 8460114
+    },
+    {
+      "season": "ฝน",
+      "total_visitors": 3436132
+    },
+    {
+      "season": "ร้อน",
+      "total_visitors": 2411500
+    }
+  ],
+  "weather_relationship": {
+    "temperature": {
+      "sample_size": 1296,
+      "pearson_r": -0.5504
+    },
+    "rainfall": {
+      "sample_size": 1296,
+      "pearson_r": -0.1752
+    },
+    "humidity": {
+      "sample_size": 1296,
+      "pearson_r": -0.0741
+    }
+  },
+  "environment_relationship": {
+    "pm25_max": {
+      "status": "available",
+      "sample_size": 25,
+      "pearson_r": -0.121,
+      "note": "ตัวแปรเป็นระดับจังหวัด ไม่ใช่ค่าของอุทยานรายแห่งโดยตรง"
+    },
+    "pm25_exceed_days": {
+      "status": "available",
+      "sample_size": 25,
+      "pearson_r": -0.0862,
+      "note": "ตัวแปรเป็นระดับจังหวัด ไม่ใช่ค่าของอุทยานรายแห่งโดยตรง"
+    },
+    "hotspot_count": {
+      "status": "available",
+      "sample_size": 25,
+      "pearson_r": -0.128,
+      "note": "ตัวแปรเป็นระดับจังหวัด ไม่ใช่ค่าของอุทยานรายแห่งโดยตรง"
+    },
+    "aggregation": "ยอดนักท่องเที่ยวรวมทุกอุทยานต่อเดือน"
+  },
+  "input_file": "data/processed/combined_monthly.csv",
+  "input_rows": 1296,
+  "environment_months": 25,
+  "benchmark": {
+    "elapsed_seconds": 0.057527,
+    "peak_memory_mb": 2.6818
+  }
+}

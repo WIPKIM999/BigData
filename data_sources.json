@@ -1,0 +1,47 @@
+{
+  "project_scope": "national_parks_in_chiang_mai",
+  "parks": [
+    "ดอยอินทนนท์",
+    "ดอยสุเทพ-ปุย",
+    "ศรีลานนา",
+    "แม่ตะไคร้",
+    "ออบหลวง",
+    "ดอยผ้าห่มปก",
+    "ผาแดง",
+    "ขุนขาน",
+    "แม่วาง",
+    "ห้วยน้ำดัง",
+    "แม่ปิง"
+  ],
+  "sources": {
+    "tourism": {
+      "provider": "กรมอุทยานแห่งชาติ สัตว์ป่า และพันธุ์พืช",
+      "catalog_url": "https://data.go.th/dataset/gdpublish-stat-tourism",
+      "catalog_dataset_id": "gdpublish-stat-tourism",
+      "expected_frequency": "monthly",
+      "status": "required"
+    },
+    "weather": {
+      "provider": "Open-Meteo",
+      "api_url": "https://archive-api.open-meteo.com/v1/archive",
+      "expected_frequency": "hourly",
+      "status": "required"
+    },
+    "hotspots": {
+      "provider": "GISTDA / สำนักงานจังหวัดเชียงใหม่",
+      "catalog_url": "https://data.go.th/dataset/68_28",
+      "expected_frequency": "monthly_or_yearly",
+      "status": "required"
+    },
+    "chiang_mai_environment": {
+      "provider": "สำนักงานจังหวัดเชียงใหม่ / data.go.th",
+      "catalog_url": "https://data.go.th/dataset/68_28",
+      "status": "optional"
+    },
+    "air_quality": {
+      "provider": "OpenAQ",
+      "api_url": "https://api.openaq.org/v3",
+      "status": "optional"
+    }
+  }
+}

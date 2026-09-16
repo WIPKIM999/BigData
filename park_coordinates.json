@@ -1,0 +1,17 @@
+{
+  "province": "เชียงใหม่",
+  "coordinate_type": "verified park reference point required before full ingestion",
+  "parks": [
+    {"park_name": "ดอยอินทนนท์", "latitude": 18.588, "longitude": 98.487},
+    {"park_name": "ดอยสุเทพ-ปุย", "latitude": 18.805, "longitude": 98.921},
+    {"park_name": "ศรีลานนา", "latitude": 19.120, "longitude": 99.050},
+    {"park_name": "แม่ตะไคร้", "latitude": 18.800, "longitude": 99.250},
+    {"park_name": "ออบหลวง", "latitude": 18.270, "longitude": 98.440},
+    {"park_name": "ดอยผ้าห่มปก", "latitude": 19.960, "longitude": 99.150},
+    {"park_name": "ผาแดง", "latitude": 19.500, "longitude": 98.950},
+    {"park_name": "ขุนขาน", "latitude": 18.900, "longitude": 98.700},
+    {"park_name": "แม่วาง", "latitude": 18.550, "longitude": 98.700},
+    {"park_name": "ห้วยน้ำดัง", "latitude": 19.310, "longitude": 98.580},
+    {"park_name": "แม่ปิง", "latitude": 17.800, "longitude": 98.850}
+  ]
+}

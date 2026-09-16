@@ -1,0 +1,8 @@
+{
+  "source_name": "open_meteo",
+  "year": 2024,
+  "locations": 11,
+  "hourly_rows": 96624,
+  "retrieved_at_utc": "2026-09-16T11:21:18.085702+00:00",
+  "coordinate_note": "reference point per park; not an area-wide average"
+}
